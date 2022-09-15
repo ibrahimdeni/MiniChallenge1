@@ -96,62 +96,43 @@
         let totalbelanja = document.getElementById("totalbelanja").value;
         totalbelanja = parseInt(totalbelanja);
 
+        let hasildiskon;
         let diskon;
-        // //variabel-variabel untuk di gunakan di pengondisian
-        // let minBelanjaA = totalbelanja >= 50000;
-        // let minBelanjaB = totalbelanja >= 70000;
-        // // let maxDiscA = 20000;
-        // // let maxDiscB = 45000;
-        // let voucherA = 25;
-        // let voucherB = 50;
 
-        //untuk pengecekan kupon(pake voucher a atau voucher b)
-        if (voucher == "DumbWMerchBerkah") {
-          diskon = totalbelanja * 0.25;
-          if (diskon >= 20000) {
-            diskon = 20000;
+        if (totalbelanja < 50000) {
+          hasildiskon = 0;
+        } else if (voucher == "DumbWMerchBerkah") {
+          hasildiskon = totalbelanja * 0.25;
+          if (hasildiskon > 20000) {
+            hasildiskon = 20000;
+          } else {
+            hasildiskon;
           }
         } else if (voucher == "DumbMerchMurahBar") {
-          diskon = totalbelanja * 0.5;
-          if (diskon >= 45000) {
-            diskon = 45000;
+          hasildiskon = totalbelanja * 0.5;
+          if (hasildiskon > 45000) {
+            hasildiskon = 45000;
+          } else {
+            hasildiskon;
           }
-        } else {
-          diskon = 0;
         }
-
-        //kondisi jika pake voucher a atau kondisi jika pake voucher b
-        // if (voucherA && minBelanjaA) {
-        //   hasildiskon = totalbelanja * (diskon / 100);
-        //   console.log(voucherA);
-        // }
-        // if (hasildiskon >= 20000) {
-        //   hasildiskon = 20000;
-        // }
-
-        // if (voucherB && minBelanjaB) {
-        //   hasildiskon = totalbelanja * (diskon / 100);
-        //   console.log(voucherB);
-        // }
-        // if (hasildiskon >= 45000) {
-        //   hasildiskon = 45000;
-        // }
-
-        // if (!voucherA) {
-        //   hasildiskon = 0;
-        // }
-        // if (!voucherB) {
-        //   hasildiskon = 0;
-        // }
-
+        if (totalbelanja < 50000) {
+          diskon = 0;
+        } else if (voucher == "DumbWMerchBerkah") {
+          diskon = 25;
+        } else if (voucher == "DumbMerchMurahBar") {
+          diskon = 50;
+        }
         //var untuk perhitungan total bayar
-        var totalbayar = totalbelanja - diskon;
+        var totalbayar = totalbelanja - hasildiskon;
 
         //untuk penampilan data di konsol log browser
         console.log(`
+    ---------- STRUK BERJANDA ------------
     Total belanja      : Rp. ${totalbelanja},00-
     Diskon             : ${diskon} %
-    Potongan           : Rp. ${diskon},00-
+    Potongan           : Rp. ${hasildiskon},00-
+    --------------------------------------
     Total Pembayaran   : Rp. ${totalbayar},00-
                     `);
       }
