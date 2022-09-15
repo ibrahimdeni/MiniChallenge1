@@ -92,52 +92,66 @@
     <script type="text/javascript">
       function BELANJA() {
         // ngambil value dariform
-        var diskon = document.getElementById("diskon").value;
-        var totalbelanja = document.getElementById("totalbelanja").value;
+        let voucher = document.getElementById("diskon").value;
+        let totalbelanja = document.getElementById("totalbelanja").value;
         totalbelanja = parseInt(totalbelanja);
 
-        //variabel-variabel untuk di gunakan di pengondisian
-        var minBelanjaA = totalbelanja >= 50000;
-        var minBelanjaB = totalbelanja >= 70000;
-        var maxDiscA = 20000;
-        var maxDiscB = 45000;
-        var voucherA = 25;
-        var voucherB = 50;
+        let diskon;
+        // //variabel-variabel untuk di gunakan di pengondisian
+        // let minBelanjaA = totalbelanja >= 50000;
+        // let minBelanjaB = totalbelanja >= 70000;
+        // // let maxDiscA = 20000;
+        // // let maxDiscB = 45000;
+        // let voucherA = 25;
+        // let voucherB = 50;
 
         //untuk pengecekan kupon(pake voucher a atau voucher b)
-        if (diskon == "DumbWMerchBerkah") {
-          diskon = voucherA;
-        }
-        if (diskon == "DumbMerchMurahBar") {
-          diskon = voucherB;
-        }
-
-        //kondisi jika pake voucher a
-        if (voucherA && minBelanjaA && maxDiscA) {
-          hasildiskon = 20000;
-          console.log(voucherA);
-        } else if (voucherA && minBelanjaA) {
-          hasildiskon = totalbelanja * (diskon / 100);
-        }
-
-        //kondisi jika pake voucher b
-        if (voucherB && minBelanjaB && maxDiscB) {
-          hasildiskon = 45000;
-          console.log(voucherB);
-        } else if (voucherB && minBelanjaB) {
-          hasildiskon = totalbelanja * (diskon / 100);
+        if (voucher == "DumbWMerchBerkah") {
+          diskon = totalbelanja * 0.25;
+          if (diskon >= 20000) {
+            diskon = 20000;
+          }
+        } else if (voucher == "DumbMerchMurahBar") {
+          diskon = totalbelanja * 0.5;
+          if (diskon >= 45000) {
+            diskon = 45000;
+          }
         } else {
-          hasildiskon = 0;
+          diskon = 0;
         }
+
+        //kondisi jika pake voucher a atau kondisi jika pake voucher b
+        // if (voucherA && minBelanjaA) {
+        //   hasildiskon = totalbelanja * (diskon / 100);
+        //   console.log(voucherA);
+        // }
+        // if (hasildiskon >= 20000) {
+        //   hasildiskon = 20000;
+        // }
+
+        // if (voucherB && minBelanjaB) {
+        //   hasildiskon = totalbelanja * (diskon / 100);
+        //   console.log(voucherB);
+        // }
+        // if (hasildiskon >= 45000) {
+        //   hasildiskon = 45000;
+        // }
+
+        // if (!voucherA) {
+        //   hasildiskon = 0;
+        // }
+        // if (!voucherB) {
+        //   hasildiskon = 0;
+        // }
 
         //var untuk perhitungan total bayar
-        var totalbayar = totalbelanja - hasildiskon;
+        var totalbayar = totalbelanja - diskon;
 
         //untuk penampilan data di konsol log browser
         console.log(`
     Total belanja      : Rp. ${totalbelanja},00-
     Diskon             : ${diskon} %
-    Potongan           : Rp. ${hasildiskon},00-
+    Potongan           : Rp. ${diskon},00-
     Total Pembayaran   : Rp. ${totalbayar},00-
                     `);
       }
