@@ -1,0 +1,17 @@
+.color1 {
+  background-color: rgb(238, 252, 255);
+}
+
+.title1 {
+  color: orangered;
+}
+
+.form-type::placeholder {
+  color: rgb(247, 181, 82);
+  font-weight: 500;
+}
+
+.form-kupon::placeholder {
+  color: rgb(255, 98, 98);
+  font-weight: 500;
+}
